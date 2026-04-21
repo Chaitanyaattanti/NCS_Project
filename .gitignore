@@ -7,6 +7,9 @@
 # Build output
 /dist/
 
+# Local packaging
+/SUBMISSION/
+
 # Python cache
 __pycache__/
 *.pyc
