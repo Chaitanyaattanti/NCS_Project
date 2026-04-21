@@ -1,0 +1,12 @@
+NETWORK TYPE ANALYSIS
+===================
+Nodes=198
+Edges=18242
+
+NORMAL DEGREE
+alpha=2.831
+xmin=134.00
+
+WEIGHTED STRENGTH
+alpha=2.041
+xmin=38730182.00

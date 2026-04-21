@@ -1,0 +1,7 @@
+[build]
+  command = "bash scripts/netlify_build.sh"
+  publish = "dist"
+
+[build.environment]
+  # Keep the build lightweight and deterministic; no dependency install needed.
+  NODE_VERSION = "20"

@@ -1,0 +1,27 @@
+GLOBAL FOOD TRADE NETWORK TYPE ANALYSIS
+======================================
+Nodes = 198
+Edges = 18242
+
+DEGREE DISTRIBUTION
+alpha = 2.831
+xmin = 134.0
+PL vs Lognormal: R=-30.745, p=0.0000
+PL vs Exponential: R=-20.839, p=0.0000
+
+WEIGHTED STRENGTH
+alpha = 2.041
+xmin = 38730182.000
+PL vs Lognormal: R=-0.878, p=0.3799
+PL vs Exponential: R=4.231, p=0.3259
+
+Degree assortativity = -0.3591
+Disassortative: hubs connect to smaller countries
+
+Density = 0.5695
+Scale-free / hub dominated structure likely
+Strong core-periphery structure present
+Weighted trade highly concentrated
+
+Weighted assortativity heatmap saved
+Weighted core countries identified

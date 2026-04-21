@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Food Trade Network Analysis</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a3a2a 100%);
+            min-height: 100vh;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a3a2a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a3a2a 100%);
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a3a2a 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+
+        .hero .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            padding: 2rem 0;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 3rem;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d5a3d;
+            border-bottom: 3px solid #2d5a3d;
+            padding-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #3a7d50;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .grid-1 {
+            grid-template-columns: 1fr;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .image-container {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(45, 90, 61, 0.2);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .image-caption {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .data-box {
+            background: linear-gradient(135deg, #2d5a3d15 0%, #1a3a2a15 100%);
+            border-left: 4px solid #2d5a3d;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .data-box h4 {
+            color: #2d5a3d;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #2d5a3d30 0%, #1a3a2a30 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #2d5a3d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a3a2a 100%);
+            color: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2d5a3d;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .findings {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f6 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border-left: 4px solid #2d5a3d;
+        }
+
+        .findings ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .findings li {
+            margin-bottom: 0.8rem;
+            color: #2d5a3d;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            nav ul {
+                gap: 1rem;
+            }
+            nav a {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.9rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .grid-3 {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .section {
+                padding: 1.5rem;
+            }
+            .section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a3a2a 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 999;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(45, 90, 61, 0.4);
+        }
+
+        #backToTop:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(45, 90, 61, 0.6);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #2d5a3d;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-alt {
+            background: #3a7d50;
+        }
+
+        .badge-info {
+            background: #52b788;
+        }
+
+        .world-map-section {
+            margin-top: 2rem;
+        }
+
+        /* Image Zoom Overlay */
+        .zoom-overlay {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            animation: fadeIn 0.2s ease-in;
+        }
+
+        .zoom-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zoom-image-container {
+            position: relative;
+            max-width: 95%;
+            max-height: 95vh;
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        .zoom-image {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .zoom-hint {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .image-container img {
+            cursor: zoom-in;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                Global Food Trade Network
+            </div>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#structure">Concentration</a></li>
+                <li><a href="#power">Critical Edges</a></li>
+                <li><a href="#strategy">Critical Countries</a></li>
+                <li><a href="#resilience">Fragility</a></li>
+                <li><a href="#conclusions">Findings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Global Food Trade Network Analysis</h1>
+            <p>A hub-dominated system where a small set of countries and corridors controls a large share of global food flows.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>198</h3>
+                    <p>Countries (Nodes)</p>
+                </div>
+                <div class="stat-item">
+                    <h3>18,242</h3>
+                    <p>Trade Routes (Edges)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="introduction" class="section">
+            <h2><i class="fas fa-globe"></i> Introduction: Global Food Trade System</h2>
+            
+            <h3>Project Overview</h3>
+            <p>This comprehensive analysis examines the global food trade network through the lens of complex systems science. By analyzing bilateral trade relationships between 198 countries, we constructed a sophisticated directed weighted network where countries serve as nodes and trade relationships as edges.</p>
+
+            <div class="data-box">
+                <h4><i class="fas fa-database"></i> Dataset Foundation</h4>
+                <p><strong>Primary Data Sources:</strong></p>
+                <ul class="feature-list">
+                    <li><strong>Input Edge List:</strong> Pre-built directed edge list (CSV) of country-to-country food flows</li>
+                    <li><strong>Network Construction:</strong> Directed graph where source→receiver represents export flow</li>
+                    <li><strong>Edge Weights:</strong> Trade value (edge weight) used for weighted analysis and impact curves</li>
+                    <li><strong>Geographic Data:</strong> 195+ country coordinates for world map visualization</li>
+                </ul>
+            </div>
+
+            <h3>Global Food Trade Network Visualization</h3>
+            <div class="image-container">
+                <img src="../outputs/04_core_network.png" alt="Global Food Trade Network">
+                <div class="image-caption">
+                    <strong>Global Food Trade Network</strong><br>
+                    Directed weighted network of global food flows.
+                </div>
+            </div>
+
+            <h3>Network Metrics Summary</h3>
+            <div class="image-container">
+                <img src="../outputs/31_intro_metrics.png" alt="Network Summary">
+                <div class="image-caption"><strong>Key Network Statistics</strong></div>
+            </div>
+
+            <h3>Adjacency Structure (Heatmap)</h3>
+            <div class="image-container">
+                <img src="../outputs/21_adjacency_heatmap.png" alt="Adjacency Matrix Heatmap">
+                <div class="image-caption"><strong>Adjacency Matrix Heatmap</strong><br>Normalized edge weights (0–1) highlight where the strongest flows concentrate across the country-by-country matrix.</div>
+            </div>
+
+            <h3>Introductory Visualizations</h3>
+            <div class="grid grid-2">
+                
+                <div class="image-container">
+                    <img src="../outputs/33_intro_top_connected.png" alt="Top Connected Countries">
+                    <div class="image-caption"><strong>Most Connected Countries</strong><br>Countries with the most trade partners</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/34_intro_trade_hist.png" alt="Trade Value Histogram">
+                    <div class="image-caption"><strong>Trade Volume Distribution</strong><br>How trade values distribute across routes</div>
+                </div>
+            </div>
+
+            <div class="data-box">
+                <h4><i class="fas fa-chart-line"></i> Core Findings</h4>
+                <ul class="feature-list">
+                    <li>This project models the global food trade system as a directed weighted network</li>
+                    <li>Countries are nodes and trade relationships are weighted links (trade value)</li>
+                    <li>The aim is to identify power, fragility, structural importance, and hidden patterns</li>
+                    <li>Final graph contains 198 countries and 18,242 trade routes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="structure" class="section">
+            <h2><i class="fas fa-network-wired"></i> Concentration: Few Nodes and Few Links Dominate</h2>
+
+            <p>This section focuses on concentration risk: whether connectivity and trade value are broadly distributed or dominated by a small minority of countries and corridors.</p>
+
+            <h3>Heavy-Tail Structure (Connectivity and Trade Strength)</h3>
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/25_degree_hist_loglog.png" alt="Degree Distribution Log-Log">
+                    <div class="image-caption"><strong>Degree Distribution (Log-Log)</strong><br>Most countries have moderate partner counts; a small tail has extremely high connectivity.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/28_strength_hist_loglog.png" alt="Strength Distribution Log-Log">
+                    <div class="image-caption"><strong>Strength Distribution (Log-Log)</strong><br>Total trade handled (sum of weights) is even more concentrated than partner counts.</div>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/26_degree_ccdf.png" alt="Degree CCDF">
+                    <div class="image-caption"><strong>Connectivity Tail Probability</strong><br>The CCDF highlights how persistent the high-degree tail is.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/29_strength_ccdf.png" alt="Strength CCDF">
+                    <div class="image-caption"><strong>Trade-Value Tail Probability</strong><br>The economic tail is steep: a few countries carry very large total flow.</div>
+                </div>
+            </div>
+
+            
+
+            
+
+            <h3>Regional Structure </h3>
+            <p>Community structure exists but is relatively weak in the unweighted topology (modularity ≈ 0.051). Weighted community grouping is more informative because it reflects trade volume, not just partner counts.</p>
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/weighted_community_internal_external.png" alt="Weighted Community Trade">
+                    <div class="image-caption"><strong>Internal vs External Trade (Weighted Communities)</strong><br>Shows which groups are more self-contained vs dependent on external trade.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/weighted_world_trade_communities_map.png" alt="Weighted Community Map">
+                    <div class="image-caption"><strong>Weighted Communities on World Map</strong><br>Geographic view of volume-based communities.</div>
+                </div>
+            </div>
+
+            <div class="findings">
+                <h4>Concentration Insights</h4>
+                <ul>
+                    <li>Connectivity and trade value are both heavy-tailed: most countries are not system-defining.</li>
+                    <li>A small group of high-degree/high-strength countries acts as the backbone of the system.</li>
+                    <li>This concentration creates efficiency in normal times and fragility under targeted disruption.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="power" class="section">
+            <h2><i class="fas fa-link"></i> Critical Edges</h2>
+
+            <p>This section is edge-centric: which trade routes carry the most value, and which routes are structurally irreplaceable for keeping the network connected.</p>
+
+            <h3>Edge-Weight Concentration </h3>
+            
+                <div class="image-container">
+                    <img src="../outputs/02_top_trade_routes.png" alt="Top Trade Routes">
+                    <div class="image-caption"><strong>Top Routes by Value</strong><br>These are high-impact corridors where disruption would immediately reduce global trade volume.</div>
+                </div>
+            
+
+            <h3>Structural vs Weighted Critical Routes</h3>
+            <p><strong>Structural criticality</strong> can highlight “bridge” edges that keep remote parts connected (even if value is small). <strong>Weighted criticality</strong> highlights high-value corridors that dominate global flow.</p>
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/10_critical_routes.png" alt="Structural Critical Routes">
+                    <div class="image-caption"><strong>Structural Critical Routes</strong><br>High edge-betweenness (connectivity impact), not necessarily high value.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/10b_weighted_critical_routes.png" alt="Weighted Critical Routes">
+                    <div class="image-caption"><strong>Weighted Critical Routes</strong><br>High weighted edge-betweenness (flow impact), usually major economies/corridors.</div>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/11_highlighted_routes.png" alt="Structural Route Overlay">
+                    <div class="image-caption"><strong>Structural Critical Routes (Overlay)</strong><br>Where “bridge” corridors sit in the full network.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/11b_weighted_highlighted_routes.png" alt="Weighted Route Overlay">
+                    <div class="image-caption"><strong>Weighted Critical Routes (Overlay)</strong><br>Where high-flow corridors sit in the full network.</div>
+                </div>
+            </div>
+
+            <div class="findings">
+                <h4>Edge Risk Takeaways</h4>
+                <ul>
+                    <li>Edge weights are highly concentrated: a small set of corridors moves a large share of total value.</li>
+                    <li>Some low-value routes are still structurally important bridges (connectivity risk).</li>
+                    <li>Hardening the network means adding redundancy for both high-value and high-betweenness corridors.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="strategy" class="section">
+            <h2><i class="fas fa-star"></i> Critical Countries: Who Holds the System Together</h2>
+
+            <p>Country importance is evaluated from multiple angles: raw trade volume, structural position (bridging), and “damage if removed” under targeted disruption.</p>
+
+            <h3>Who Feeds vs Who Depends</h3>
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/05_top_exporters.png" alt="Top Exporters">
+                    <div class="image-caption"><strong>Top Exporters</strong><br>Countries with the largest outbound trade value.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/06_top_importers.png" alt="Top Importers">
+                    <div class="image-caption"><strong>Top Importers</strong><br>Countries most dependent on inbound trade.</div>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/37_world_map_exporters.png" alt="World Map Exporters">
+                    <div class="image-caption"><strong>Export Power (Map)</strong><br>Geographic view of export concentration.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/38_world_map_importers.png" alt="World Map Importers">
+                    <div class="image-caption"><strong>Import Dependency (Map)</strong><br>Geographic view of import reliance.</div>
+                </div>
+            </div>
+
+            <h3>Influence: Position Matters (Not Just Volume)</h3>
+            <div class="image-container">
+                <img src="../outputs/07_top_pagerank.png" alt="Top PageRank">
+                <div class="image-caption"><strong>PageRank Influence</strong><br>Captures “system-level” importance based on who a country connects to (and via what flows).</div>
+            </div>
+
+            <h3>Bridge Countries (Betweenness): Structural vs Weighted</h3>
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/08_bridge_countries.png" alt="Bridge Countries">
+                    <div class="image-caption"><strong>Structural Bridges</strong><br>Countries that connect regions in terms of paths/connectivity.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/08b_weighted_bridge_countries.png" alt="Weighted Bridge Countries">
+                    <div class="image-caption"><strong>Weighted Bridges</strong><br>Countries that sit on high-value trade flow paths.</div>
+                </div>
+            </div>
+
+            <h3>Which Removals Cause the Most Damage?</h3>
+            <p><strong>Left:</strong> removals that fragment connectivity. <strong>Right:</strong> removals that collapse total trade value fastest.</p>
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/18_critical_countries.png" alt="Structural Critical Countries">
+                    <div class="image-caption"><strong>Structural Critical Countries</strong><br>Removing these quickly breaks the network into smaller components.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/18b_weighted_critical_countries.png" alt="Weighted Critical Countries">
+                    <div class="image-caption"><strong>Trade-Value Critical Countries</strong><br>Removing these causes disproportionate trade-value loss.</div>
+                </div>
+            </div>
+
+            <h3>Supporting Views</h3>
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/20_degree_vs_pagerank.png" alt="Degree vs PageRank">
+                    <div class="image-caption"><strong>Connectivity vs Influence</strong><br>High degree helps, but positioning can matter more than raw partner count.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/40_world_map_trade_balance.png" alt="Trade Balance Map">
+                    <div class="image-caption"><strong>Trade Balance (Map)</strong><br>Net exporters vs net importers.</div>
+                </div>
+            </div>
+
+            <h3 class="world-map-section">Global Influence Map</h3>
+            <div class="image-container">
+                <img src="../outputs/39_world_map_pagerank.png" alt="Influence World Map">
+                <div class="image-caption"><strong>Influence on World Map (PageRank)</strong><br>Shows countries that are consistently central to global food trade dynamics.</div>
+            </div>
+
+            <div class="findings">
+                <h4>Critical Country Takeaways</h4>
+                <ul>
+                    <li>Power comes from network position, not only trade volume.</li>
+                    <li>Bridge countries can be system-critical even if they are not top exporters/importers.</li>
+                    <li>Targeted removal of a small set of top-ranked countries causes rapid systemic damage.</li>
+                    <li>Structural criticality and weighted criticality are related but not identical.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="resilience" class="section">
+            <h2><i class="fas fa-shield-alt"></i> Fragility: Removing a Few Countries or Routes Changes Everything</h2>
+
+            <h3>Connectivity Collapse: Random vs Targeted Removal</h3>
+            <div class="image-container">
+                <img src="../outputs/23_full_robustness.png" alt="Connectivity Robustness">
+                <div class="image-caption"><strong>Largest SCC Under Attacks</strong><br>Random failures degrade gradually; targeted removal of key nodes/edges keeps the system intact for a while, then triggers a rapid collapse.</div>
+            </div>
+
+            <h3>Trade-Value Collapse: What Actually Happens to Flow</h3>
+            <div class="image-container">
+                <img src="../outputs/23b_trade_robustness.png" alt="Trade Robustness">
+                <div class="image-caption"><strong>Remaining Trade Volume Under Attacks</strong><br>Trade value disappears far faster under targeted strategies than under random failure.</div>
+            </div>
+
+            <h3>Weighted Damage Curves </h3>
+            <div class="image-container">
+                <img src="../outputs/39_weighted_robustness_combined.png" alt="Weighted Robustness Combined">
+                <div class="image-caption"><strong>Weighted Robustness</strong><br>Shows how exports, imports, and total trade degrade as countries are removed (random vs targeted).</div>
+            </div>
+
+            <h3>Who Is Most Exposed? Dependency Profiles</h3>
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/15_import_dependency.png" alt="Import Dependency">
+                    <div class="image-caption"><strong>Import Dependency</strong><br>Countries facing the highest food security exposure if suppliers fail.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/16_export_dependency.png" alt="Export Dependency">
+                    <div class="image-caption"><strong>Export Dependency</strong><br>Countries vulnerable to demand shocks and corridor disruptions.</div>
+                </div>
+            </div>
+
+            <h3>Mitigation: Rebuild by Adding the Right Edges First</h3>
+            <div class="image-container">
+                <img src="../outputs/42_edge_addition_trade_only.png" alt="Edge Addition Trade Only">
+                <div class="image-caption"><strong>Edge Addition Strategy</strong><br>Restoring the strongest corridors first recovers total trade much faster than adding edges at random.</div>
+            </div>
+
+  
+
+            <div class="findings">
+                <h4>Fragility Findings</h4>
+                <ul>
+                    <li>The system is robust to random shocks but fragile to targeted disruption.</li>
+                    <li>Removing a small set of critical countries/corridors can eliminate most trade value quickly.</li>
+                    <li>Resilience strategy: diversify suppliers and add redundancy for high-impact corridors.</li>
+                </ul>
+            </div>
+
+            <h3>Network Resilience Overview</h3>
+            <div class="data-box">
+                <h4><i class="fas fa-chart-bar"></i> Comprehensive Summary (Values)</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                            <th>What it means</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nodes</strong></td>
+                            <td>198</td>
+                            <td>Countries in the network</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Edges</strong></td>
+                            <td>18,242</td>
+                            <td>Directed trade routes (exporter → importer)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Density</strong></td>
+                            <td>0.4677</td>
+                            <td>How close the graph is to fully connected</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reciprocity</strong></td>
+                            <td>0.7824</td>
+                            <td>Fraction of links that are mutual in both directions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Communities</strong></td>
+                            <td>2</td>
+                            <td>Coarse blocs detected by modularity (topology-based)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Largest SCC</strong></td>
+                            <td>198</td>
+                            <td>All countries are mutually reachable via directed paths (strong connectivity)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Assortativity</strong></td>
+                            <td>-0.3591</td>
+                            <td>Disassortative: hubs connect to smaller-degree countries</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="conclusions" class="section">
+            <h2><i class="fas fa-lightbulb"></i> Final Findings & Network Classification</h2>
+
+            <h3>Network Type: Heavy-Tail With Strong Concentration</h3>
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/28_model_ccdf_compare.png" alt="Degree Model Comparison">
+                    <div class="image-caption"><strong>Degree Model Comparison</strong><br>Tail comparisons favor a lognormal-like heavy tail over a pure power-law.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/weighted_tail_model_comparison.png" alt="Weighted Tail Comparison">
+                    <div class="image-caption"><strong>Weighted Tail Model Comparison</strong><br>Weighted strength tail remains heavy; model comparisons are less decisive.</div>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/powerlaw_fit_degree.png" alt="Powerlaw Fit Degree">
+                    <div class="image-caption"><strong>Degree Tail Fit</strong><br>Degree tail: α = 2.831, xmin = 134.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/powerlaw_fit_weighted_strength.png" alt="Powerlaw Fit Strength">
+                    <div class="image-caption"><strong>Strength Tail Fit</strong><br>Strength tail: α = 2.041, xmin ≈ 38.7M.</div>
+                </div>
+            </div>
+
+            <h3>Concentration Recap (Ranks)</h3>
+            <div class="grid grid-2">
+                <div class="image-container">
+                    <img src="../outputs/29_rank_degree_plot.png" alt="Rank Degree">
+                    <div class="image-caption"><strong>Rank vs Degree</strong><br>Few countries dominate connectivity.</div>
+                </div>
+                <div class="image-container">
+                    <img src="../outputs/weighted_strength_rank_plot.png" alt="Rank Strength">
+                    <div class="image-caption"><strong>Rank vs Strength</strong><br>Even fewer dominate trade value.</div>
+                </div>
+            </div>
+
+            <div class="data-box">
+                <h4><i class="fas fa-chart-line"></i> Quantitative Summary</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Characteristic</th>
+                            <th>Measurement</th>
+                            <th>Implication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Degree Tail</strong></td>
+                            <td>α = 2.831, Kmin = 134; PL vs Lognormal: R=-30.745 </td>
+                            <td><span class="badge">Heavy-tail, lognormal-favored</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Strength Tail</strong></td>
+                            <td>α = 2.041, Kmin ≈ 38.7M; PL vs Lognormal: R=-0.878 </td>
+                            <td><span class="badge badge-alt">Trade highly concentrated</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Flow</strong></td>
+                            <td>Total trade weight sum ≈ 3,734,925,964</td>
+                            <td><span class="badge badge-alt">Small shocks can have big cost</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="findings">
+                <h4>Key Findings (Notebook Summary)</h4>
+                <ul>
+                    <li>Global food trade is concentrated around a few hub countries.</li>
+                    <li>Some countries act as bridges connecting separate trade blocs.</li>
+                    <li>Structural importance differs from raw trade volume.</li>
+                    <li>A few routes function as critical global trade corridors.</li>
+                    <li>The network survives random shocks better than targeted attacks.</li>
+                </ul>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><strong>Global Food Trade Network Analysis</strong></p>
+            <p>Network Science & Complex Systems Project</p>
+            <p>Analysis of International Agricultural Trade Flows (2015-2023)</p>
+            <p>© 2026</p>
+        </div>
+    </footer>
+
+    <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Image Zoom - Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const zoomOverlay = document.getElementById('zoomOverlay');
+            const zoomImage = document.getElementById('zoomImage');
+
+            if (zoomOverlay && zoomImage) {
+                // Zoom in on image click
+                document.querySelectorAll('.image-container img').forEach(img => {
+                    img.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        zoomOverlay.classList.add('active');
+                        zoomImage.src = this.src;
+                    });
+                });
+
+                // Close zoom on background click
+                zoomOverlay.addEventListener('click', function(e) {
+                    if (e.target === zoomOverlay) {
+                        zoomOverlay.classList.remove('active');
+                    }
+                });
+            }
+
+            // Close zoom on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && zoomOverlay) {
+                    zoomOverlay.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+    <!-- Image Zoom Overlay -->
+    <div id="zoomOverlay" class="zoom-overlay">
+        <div class="zoom-image-container">
+            <img id="zoomImage" class="zoom-image" src="" alt="">
+            <div class="zoom-hint">Press ESC to close or click outside</div>
+        </div>
+    </div>
+
+</body>
+</html>
