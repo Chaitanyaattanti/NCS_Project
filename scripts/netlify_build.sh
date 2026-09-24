@@ -19,6 +19,8 @@ mkdir -p dist
 
 cp -R dashboard dist/dashboard
 cp -R outputs dist/outputs
+cp dashboard/favicon.svg dist/favicon.ico 2>/dev/null || true
+cp dashboard/favicon.svg dist/favicon.svg 2>/dev/null || true
 
 # Minimal landing page so '/' works on Netlify.
 cat > dist/index.html <<'HTML'

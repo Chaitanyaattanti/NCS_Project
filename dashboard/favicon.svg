@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d5a3d"/>
+      <stop offset="100%" stop-color="#1a3a2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#grad)"/>
+  <!-- Leaf / Plant symbol -->
+  <path d="M32 12 C20 12 14 26 16 38 C18 50 32 52 32 52 C32 52 46 50 48 38 C50 26 44 12 32 12 Z" fill="#52b788"/>
+  <path d="M32 16 C32 30 32 44 32 52" stroke="#2d5a3d" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M32 26 C38 22 42 24 44 26" stroke="#2d5a3d" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 34 C26 30 22 32 20 34" stroke="#2d5a3d" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 40 C38 38 42 39 43 41" stroke="#2d5a3d" stroke-width="2" stroke-linecap="round"/>
+</svg>
