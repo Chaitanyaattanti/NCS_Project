@@ -836,53 +836,6 @@ tbody tr:last-child td {
   box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.15);
 }
 
-/* Original Plot Collapsible Drawer */
-.original-benchmark-toggle {
-  margin-top: 1rem;
-  padding-top: 0.75rem;
-  border-top: 1px dashed #cbd5e1;
-}
-
-.toggle-details-summary {
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #64748b;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  user-select: none;
-  transition: color 0.2s;
-}
-
-.toggle-details-summary:hover {
-  color: #2d5a3d;
-}
-
-.original-plot-preview {
-  margin-top: 0.75rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.original-plot-preview img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 6px;
-  max-height: 480px;
-  object-fit: contain;
-}
-
-.original-plot-preview figcaption {
-  font-size: 0.8rem;
-  color: #666;
-  margin-top: 0.5rem;
-  font-style: italic;
-}
-
 /* Footer (Classic) */
 footer {
   background: rgba(0, 0, 0, 0.9);

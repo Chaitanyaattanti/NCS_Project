@@ -367,13 +367,7 @@
     if (!panel) return;
 
     if (!countryName) {
-      panel.innerHTML = `
-        <div class="empty-selection-placeholder">
-          <i class="fas fa-mouse-pointer" style="font-size:2rem; margin-bottom:0.75rem;"></i>
-          <h4>Interactive Country Inspector</h4>
-          <p>Click any node or corridor in the network, or select from the dropdown to isolate its trade network, partners, and vulnerability metrics.</p>
-        </div>
-      `;
+      panel.innerHTML = '';
       return;
     }
 

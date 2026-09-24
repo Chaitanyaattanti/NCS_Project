@@ -24,9 +24,8 @@
     <nav>
         <div class="container">
             <div class="nav-brand">
-                <div class="brand-icon"><i class="fas fa-seedling"></i></div>
-                <span>FoodTrade<span style="color:var(--accent-emerald-light)">Net</span></span>
-                <span class="nav-badge">Interactive</span>
+                <i class="fas fa-seedling brand-icon"></i>
+                <span>Food Trade Network</span>
             </div>
             <ul>
                 <li><a href="#introduction"><i class="fas fa-globe"></i> Network</a></li>
@@ -99,82 +98,18 @@
                     </div>
                 </div>
 
-                <div class="network-layout-grid">
-                    <div>
-                        <!-- Slider for Corridors Threshold -->
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; font-size:0.85rem; color:var(--text-secondary);">
-                            <span><i class="fas fa-sliders"></i> Displaying Top Corridors: <strong id="network-edge-count" style="color:var(--accent-emerald-light)">120</strong></span>
-                            <span style="font-size:0.78rem; color:var(--text-muted);">Increase slider to view denser flows</span>
-                        </div>
-                        <input id="network-edge-slider" type="range" min="30" max="300" step="15" value="120" class="custom-slider" style="margin-bottom:1rem;">
-                        
-                        <!-- Main ECharts Canvas -->
-                        <div id="interactive-network-chart" class="chart-box chart-box-tall"></div>
-                    </div>
-
-                    <!-- Selected Country Profile / Ego-Network Inspector -->
-                    <div class="inspector-panel" id="selected-country-card">
-                        <!-- Populated dynamically upon clicking any country or selecting from dropdown -->
-                    </div>
+                <!-- Full-Width Food Trade Network Map & Flows -->
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; font-size:0.85rem; color:var(--text-secondary);">
+                    <span><i class="fas fa-sliders"></i> Displaying Top Corridors: <strong id="network-edge-count" style="color:var(--primary-green)">120</strong></span>
+                    <span style="font-size:0.78rem; color:var(--text-muted);">Adjust slider to display more or fewer trade corridors</span>
                 </div>
+                <input id="network-edge-slider" type="range" min="30" max="300" step="15" value="120" class="custom-slider" style="margin-bottom:1.25rem;">
+                
+                <!-- Main Full-Width ECharts Canvas -->
+                <div id="interactive-network-chart" class="chart-box" style="height: 640px;"></div>
 
-                <!-- Collapsible Original Benchmark Reference -->
-                <div class="original-benchmark-toggle">
-                    <details>
-                        <summary class="toggle-details-summary">
-                            <i class="fas fa-image"></i> View Original Notebook Benchmark Plots (04_core_network.png & 31_intro_metrics.png)
-                        </summary>
-                        <div class="original-plot-preview">
-                            <img src="../outputs/04_core_network.png" alt="Static Core Network Plot">
-                            <figcaption>Static network visualization originally generated from Matplotlib / final.ipynb</figcaption>
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-            <!-- Introductory Connectivity & Distribution Sub-Grid -->
-            <div class="grid-2">
-                <!-- Most Connected Countries -->
-                <div class="interactive-card">
-                    <div class="chart-header">
-                        <div class="chart-title">
-                            <h3><i class="fas fa-plug-circle-bolt" style="color:var(--accent-sky)"></i> Most Connected Nations</h3>
-                            <p>Inbound (Supplier) vs Outbound (Customer) Partner Counts</p>
-                        </div>
-                    </div>
-                    <div id="chart-intro-connected" class="chart-box chart-box-md"></div>
-                    <div class="original-benchmark-toggle">
-                        <details>
-                            <summary class="toggle-details-summary">
-                                <i class="fas fa-image"></i> View Original Plot (33_intro_top_connected.png)
-                            </summary>
-                            <div class="original-plot-preview">
-                                <img src="../outputs/33_intro_top_connected.png" alt="Top Connected">
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- Trade Value Histogram -->
-                <div class="interactive-card">
-                    <div class="chart-header">
-                        <div class="chart-title">
-                            <h3><i class="fas fa-chart-column" style="color:var(--accent-emerald-light)"></i> Trade Volume Distribution</h3>
-                            <p>How Flow Values Distribute Across All Bilateral Routes (Log Scale)</p>
-                        </div>
-                    </div>
-                    <div id="chart-intro-trade-hist" class="chart-box chart-box-md"></div>
-                    <div class="original-benchmark-toggle">
-                        <details>
-                            <summary class="toggle-details-summary">
-                                <i class="fas fa-image"></i> View Original Plot (34_intro_trade_hist.png)
-                            </summary>
-                            <div class="original-plot-preview">
-                                <img src="../outputs/34_intro_trade_hist.png" alt="Trade Hist">
-                            </div>
-                        </details>
-                    </div>
-                </div>
+                <!-- Selected Country Profile / Ego-Network Inspector (Full Width below chart) -->
+                <div id="selected-country-card"></div>
             </div>
 
             <!-- Adjacency Matrix Heatmap -->
@@ -186,16 +121,6 @@
                     </div>
                 </div>
                 <div id="chart-adjacency-heatmap" class="chart-box chart-box-tall"></div>
-                <div class="original-benchmark-toggle">
-                    <details>
-                        <summary class="toggle-details-summary">
-                            <i class="fas fa-image"></i> View Original Heatmap Plot (21_adjacency_heatmap.png)
-                        </summary>
-                        <div class="original-plot-preview">
-                            <img src="../outputs/21_adjacency_heatmap.png" alt="Adjacency Heatmap">
-                        </div>
-                    </details>
-                </div>
             </div>
         </section>
 
@@ -243,18 +168,6 @@
                         <li><strong>System Vulnerability:</strong> While random disturbances have negligible impact, this acute concentration makes the network hyper-sensitive to coordinated disruptions.</li>
                     </ul>
                 </div>
-
-                <div class="original-benchmark-toggle">
-                    <details>
-                        <summary class="toggle-details-summary">
-                            <i class="fas fa-image"></i> View Original Distribution Plots (25_degree_hist_loglog.png, 28_strength_hist_loglog.png, 26_degree_ccdf.png)
-                        </summary>
-                        <div class="original-plot-preview" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                            <img src="../outputs/25_degree_hist_loglog.png" alt="Degree LogLog">
-                            <img src="../outputs/28_strength_hist_loglog.png" alt="Strength LogLog">
-                        </div>
-                    </details>
-                </div>
             </div>
 
             <!-- Regional Structure: Trade Blocs -->
@@ -275,17 +188,6 @@
                         <li><strong>Bloc 3 (35 Countries):</strong> Highly outward-dependent with 53.5% external trade ($307.6M), making its members sensitive to intercontinental shipping lanes.</li>
                         <li><strong>Bloc 1 (103 Countries):</strong> Balanced mix with 52.4% internal flow ($471.4M) and 47.6% external flow ($428.6M).</li>
                     </ul>
-                </div>
-
-                <div class="original-benchmark-toggle">
-                    <details>
-                        <summary class="toggle-details-summary">
-                            <i class="fas fa-image"></i> View Original Community Plots (weighted_community_internal_external.png & weighted_world_trade_communities_map.png)
-                        </summary>
-                        <div class="original-plot-preview">
-                            <img src="../outputs/weighted_community_internal_external.png" alt="Community Trade">
-                        </div>
-                    </details>
                 </div>
             </div>
         </section>
@@ -327,18 +229,6 @@
                         <li><strong>Weighted Corridors:</strong> France → USA and transatlantic corridors maintain vital flow redundancy for higher-order processed agricultural commodities.</li>
                     </ul>
                 </div>
-
-                <div class="original-benchmark-toggle">
-                    <details>
-                        <summary class="toggle-details-summary">
-                            <i class="fas fa-image"></i> View Original Route Plots (02_top_trade_routes.png, 10_critical_routes.png, 10b_weighted_critical_routes.png)
-                        </summary>
-                        <div class="original-plot-preview" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                            <img src="../outputs/02_top_trade_routes.png" alt="Top Routes">
-                            <img src="../outputs/10_critical_routes.png" alt="Structural Critical Routes">
-                        </div>
-                    </details>
-                </div>
             </div>
         </section>
 
@@ -371,18 +261,6 @@
                 </div>
 
                 <div id="chart-exporters-importers" class="chart-box chart-box-tall"></div>
-
-                <div class="original-benchmark-toggle">
-                    <details>
-                        <summary class="toggle-details-summary">
-                            <i class="fas fa-image"></i> View Original Country Ranking Plots (05_top_exporters.png & 06_top_importers.png)
-                        </summary>
-                        <div class="original-plot-preview" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                            <img src="../outputs/05_top_exporters.png" alt="Top Exporters">
-                            <img src="../outputs/06_top_importers.png" alt="Top Importers">
-                        </div>
-                    </details>
-                </div>
             </div>
 
             <!-- Centrality Matrix & Degree vs PageRank Subgrid -->
@@ -433,18 +311,6 @@
                     </div>
                 </div>
                 <div id="chart-removal-damage" class="chart-box chart-box-tall"></div>
-
-                <div class="original-benchmark-toggle">
-                    <details>
-                        <summary class="toggle-details-summary">
-                            <i class="fas fa-image"></i> View Original Critical Country Plots (18_critical_countries.png & 18b_weighted_critical_countries.png)
-                        </summary>
-                        <div class="original-plot-preview" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                            <img src="../outputs/18_critical_countries.png" alt="Structural Critical Countries">
-                            <img src="../outputs/18b_weighted_critical_countries.png" alt="Weighted Critical Countries">
-                        </div>
-                    </details>
-                </div>
             </div>
 
             <!-- Comprehensive 198 Country Searchable Profile Table -->
@@ -607,18 +473,6 @@
                         <li><strong>Recovery Strategy:</strong> In the event of a global crisis, reconstructing or protecting the strongest high-volume corridors first recovers over 85% of total world trade with fewer than 1,000 edges restored.</li>
                     </ul>
                 </div>
-
-                <div class="original-benchmark-toggle">
-                    <details>
-                        <summary class="toggle-details-summary">
-                            <i class="fas fa-image"></i> View Original Robustness Plots (23_full_robustness.png, 23b_trade_robustness.png, 39_weighted_robustness_combined.png, 42_edge_addition_trade_only.png)
-                        </summary>
-                        <div class="original-plot-preview" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                            <img src="../outputs/23_full_robustness.png" alt="SCC Robustness">
-                            <img src="../outputs/23b_trade_robustness.png" alt="Trade Robustness">
-                        </div>
-                    </details>
-                </div>
             </div>
         </section>
 
@@ -643,18 +497,6 @@
                 </div>
 
                 <div id="chart-tail-models" class="chart-box chart-box-tall"></div>
-
-                <div class="original-benchmark-toggle">
-                    <details>
-                        <summary class="toggle-details-summary">
-                            <i class="fas fa-image"></i> View Original Statistical Plots (28_model_ccdf_compare.png & weighted_tail_model_comparison.png)
-                        </summary>
-                        <div class="original-plot-preview" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                            <img src="../outputs/28_model_ccdf_compare.png" alt="Degree Model Comparison">
-                            <img src="../outputs/weighted_tail_model_comparison.png" alt="Weighted Tail Model Comparison">
-                        </div>
-                    </details>
-                </div>
             </div>
 
             <!-- Quantitative Summary Table -->
